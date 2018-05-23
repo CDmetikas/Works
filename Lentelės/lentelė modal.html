@@ -1,0 +1,244 @@
+<!doctype html>
+
+<html>
+
+<head>
+    <title> This is the title </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            display: flex;
+            padding: 50px;
+            color: #2d3436;
+        }
+        
+        input {
+            width: 80%;
+        }
+        
+        table {
+            min-width: 700px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Button trigger modal -->
+    <button style="height: 35px;" type="button" class="btn btn-primary mr-5" data-toggle="modal" data-target="#exampleModalCenter" onclick="openModule()">
+    Naujas
+</button>
+    <!-- Modal -->
+    <div class="modal fade " id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered " role="document">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <h5 class="modal-title alert" id="exampleModalLongTitle">Suveskite duomenis</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body ">
+                    <div>
+                        <input id="data" type="date" placeholder="Data.."><br><br>
+                        <input id="numeriai" type="text" placeholder="Automobilio numeriai.."><br><br>
+                        <input id="atstumas" type="number" placeholder="Nuvažiuotas atstumas metrais.."><br><br>
+                        <input id="laikas" type="number" placeholder="Važiavimo laikas sekundėm..">
+                    </div>
+                </div>
+                <div id="pagrindinisModuleButton" class="modal-footer"></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="trintiModule" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title alert" id="exampleModalLongTitle">“Ar tikrai norite ištrinti?”</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-footer" id="trintiModuleButton"></div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <table id="demo" border="1" class="table table-sm table-dark">
+            <thead>
+                <tr>
+                    <th scope="col" onclick="rikiavimas()">Data</th>
+                    <th scope="col">Numeriai</th>
+                    <th scope="col">Atstumas m.</th>
+                    <th scope="col">Laikas s.</th>
+                    <th scope="col">Greitis km/h</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table> <br>
+        <p id="didziausiareiksme" style="color:#0984e3; font-weight: bold;"></p>
+    </div>
+
+    <script type="text/javascript">
+        var masyvas = [];
+
+        function openModule() {
+            ID("pagrindinisModuleButton").innerHTML = '<button type="button" class="btn btn-secondary" data-dismiss="modal">Uždaryti</button><button type="button" class="btn btn-primary" onclick="Prideti()">Saugoti</button>'
+        }
+
+        function Prideti() {
+            var data1 = ID("data").value;
+            var numeriai1 = ID("numeriai").value;
+            var atstumas1 = ID("atstumas").value;
+            var laikas1 = ID("laikas").value;
+
+            if (data1 == "" || numeriai1 == "" || atstumas1 == "" || laikas1 == "") {
+                document.querySelector(".alert").innerHTML = "Visi laukai turi būti užpildyti!";
+                if (data1 == "") {
+                    document.querySelector(".alert").style.color = "#d63031";
+                    ID("data").style.backgroundColor = "#d63031";
+                    ID("data").style.color = "white";
+                } else {
+                    ID("data").style.backgroundColor = "#00b894";
+                    ID("data").style.color = "white";
+                }
+                if (numeriai1 == "") {
+                    document.querySelector(".alert").style.color = "#d63031";
+                    ID("numeriai").style.backgroundColor = "#d63031";
+                    ID("numeriai").style.color = "white";
+                } else {
+                    ID("numeriai").style.backgroundColor = "#00b894";
+                    ID("numeriai").style.color = "white";
+                }
+                if (atstumas1 == "") {
+                    document.querySelector(".alert").style.color = "#d63031";
+                    ID("atstumas").style.backgroundColor = "#d63031";
+                    ID("atstumas").style.color = "white";
+                } else {
+                    ID("atstumas").style.backgroundColor = "#00b894";
+                    ID("atstumas").style.color = "white";
+                }
+                if (laikas1 == "") {
+                    document.querySelector(".alert").style.color = "#d63031";
+                    ID("laikas").style.backgroundColor = "#d63031";
+                    ID("laikas").style.color = "white";
+                } else {
+                    ID("laikas").style.backgroundColor = "#00b894";
+                    ID("laikas").style.color = "white";
+                }
+
+            } else {
+                document.querySelector(".alert").innerHTML = "Suveskite duomenis";
+                document.querySelector(".alert").style.color = "";
+                ID("data").style.color = "";
+                ID("numeriai").style.color = "";
+                ID("atstumas").style.color = "";
+                ID("laikas").style.color = "";
+                atstatoRemelius();
+                parseInt(atstumas1);
+                parseInt(laikas1);
+                masyvas.push({
+                    "data": data1,
+                    "numeriai": numeriai1,
+                    "atstumas": atstumas1,
+                    "laikas": laikas1
+                });
+                document.querySelector("tbody").innerHTML = "";
+                ciklas();
+            }
+        }
+
+        function ciklas() {
+            for (i = 0; i < masyvas.length; i++) {
+                var greitis = ((3600 / masyvas[i].laikas) * masyvas[i].atstumas) / 1000;
+
+                document.querySelector("tbody").innerHTML +=
+                    "<tr id='eilute" + i + "'>" +
+                    "<td>" + masyvas[i].data + "</td>" +
+                    "<td>" + masyvas[i].numeriai + "</td>" +
+                    "<td>" + masyvas[i].atstumas + "</td>" +
+                    "<td>" + masyvas[i].laikas + "</td>" +
+                    "<td id='g" + i + "'>" + greitis.toFixed(0) + "</td>" +
+                    "<td><div style='color: #e74c3c; cursor: pointer;' id='trintiButton" + i + "' onclick='createTrintiModule(" + i + ")' data-toggle='modal' title='Trinti!' data-target='#trintiModule'><i class='fas fa-trash-alt'></i></div></td>" +
+                    "<td><div style='color: #0984e3; cursor: pointer;' id='redaguotiButton" + i + "' onclick='redaguoti(" + i + ")' data-toggle='modal' title='Redaguoti!' data-target='#exampleModalCenter'><i class='fas fa-edit'></i></div></td>" +
+                    "</tr>";
+            }
+            atstatoReiksmes();
+            didziausias();
+        }
+
+        function createTrintiModule(i) {
+            ID("trintiModuleButton").innerHTML =
+                '<button type="button" class="btn btn-secondary" data-dismiss="modal">Ne</button><button  type="button" class="btn btn-primary" data-dismiss="modal" onclick="Trinti(' + i + ')">Taip</button>'
+        }
+
+        function Trinti(i) {
+            masyvas.splice(i, 1);
+            document.querySelector("tbody").innerHTML = "";
+            ciklas();
+        }
+
+        function redaguoti(i) {
+
+            ID("pagrindinisModuleButton").innerHTML = '<button type="button" class="btn btn-secondary" data-dismiss="modal">Uždaryti</button><button type="button" class="btn btn-primary" data-dismiss="modal" onclick="saugoti(' + i + ')">Saugoti</button>'
+            ID("data").value = masyvas[i].data;
+            ID("numeriai").value = masyvas[i].numeriai;
+            ID("atstumas").value = masyvas[i].atstumas;
+            ID("laikas").value = masyvas[i].laikas;
+        }
+
+        function saugoti(i) {
+
+            masyvas[i].data = ID("data").value;
+            masyvas[i].numeriai = ID("numeriai").value;
+            masyvas[i].atstumas = ID("atstumas").value;
+            masyvas[i].laikas = ID("laikas").value;
+            document.querySelector("tbody").innerHTML = "";
+            ciklas();
+        }
+
+        function atstatoReiksmes() {
+            ID("numeriai").value = "";
+            ID("atstumas").value = "";
+            ID("laikas").value = "";
+            ID("data").value = "";
+        }
+
+        function atstatoRemelius() {
+            ID("numeriai").style.backgroundColor = "";
+            ID("atstumas").style.backgroundColor = "";
+            ID("laikas").style.backgroundColor = "";
+            ID("data").style.backgroundColor = "";
+        }
+
+        function ID(id) {
+            return document.getElementById(id);
+        }
+
+        function didziausias() {
+            var max = [];
+            for (i = 0; i < masyvas.length; i++) {
+                var x = ID("g" + i).innerHTML;
+                max.push(x);
+            }
+            var reiksme = Math.max.apply(Math, max);
+            ID("didziausiareiksme").innerHTML = "Didžiausias greitis - " + reiksme + " km/h";
+            for (a = 0; a < max.length; a++) {
+                if (reiksme == ID("g" + a).innerHTML) {
+                    i--;
+                    ID("g" + a).style.color = "#0984e3";
+                    ID("g" + a).style.fontWeight = "bold";
+                    break;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

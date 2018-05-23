@@ -1,0 +1,634 @@
+<!doctype html>
+
+<html>
+
+<head>
+    <title> Š achmatų lenta </title>
+    <meta charset="UTF-8">
+    <style>
+        /* --------------------------pagrindas-------------------------- */
+        
+        .container {
+            /* border: 1px solid #6D442E; */
+            width: 90vmin;
+            height: 90vmin;
+            box-shadow: 10px 10px 5px #6D442E;
+            margin: auto;
+        }
+        
+        .container div {
+            width: 10%;
+            height: 10%;
+            float: left;
+        }
+        /* --------------------------Remelis-------------------------- */
+        
+        div.remelis,
+        div.remelis1 {
+            background-color: wheat;
+            text-align: center;
+        }
+        
+        span {
+            display: block;
+            position: relative;
+            top: calc(50% - 0.5em);
+            font-size: 3vmin;
+            color: #6D442E;
+            font-weight: bold;
+        }
+        
+        .remelis1 span {
+            transform: rotate(180deg);
+        }
+        /* --------------------------Lenta-------------------------- */
+        
+        div.lenta:nth-child(even) {
+            background-color: #6D442E;
+        }
+        
+        div.lenta1:nth-child(odd) {
+            background-color: #6D442E;
+        }
+        
+        div.lenta:nth-child(odd) {
+            background-color: wheat;
+        }
+        
+        div.lenta1:nth-child(even) {
+            background-color: wheat;
+        }
+        /* --------------------------Remelis-------------------------- */
+        
+        .Bfigura,
+        .Jfigura {
+            display: block;
+            position: relative;
+            top: calc(50% - 0.7em);
+            left: calc(50% - 0.5em);
+            font-size: 5vmin;
+            cursor: pointer;
+        }
+        
+        .Bfigura {
+            color: white;
+            text-shadow: 0px 0px 10px black;
+        }
+    </style>
+    <script>
+        sachmatai = [
+            [11, 12, 13, 14, 15, 16, 17, 18],
+            [21, 22, 23, 24, 25, 26, 27, 28],
+            [31, 32, 33, 34, 35, 36, 37, 38],
+            [41, 42, 43, 44, 45, 46, 47, 48],
+            [51, 52, 53, 54, 55, 56, 57, 58],
+            [61, 62, 63, 64, 65, 66, 67, 68],
+            [71, 72, 73, 74, 75, 76, 77, 78],
+            [81, 82, 83, 84, 85, 86, 87, 88],
+        ];
+        // -----------------------------------------------------------------AllowDrop-----------------------------------------------------------------
+        function allowDrop(ev) {
+
+            pabaigosKoordinates = parseInt(ev.target.id);
+            var Jpestininkai = figurosID == "jpestininkas1" || figurosID == "jpestininkas2" || figurosID == "jpestininkas3" || figurosID == "jpestininkas4" || figurosID == "jpestininkas5" || figurosID == "jpestininkas6" || figurosID == "jpestininkas7" || figurosID == "jpestininkas8";
+            var Bpestininkai = figurosID == "bpestininkas1" || figurosID == "bpestininkas2" || figurosID == "bpestininkas3" || figurosID == "bpestininkas4" || figurosID == "bpestininkas5" || figurosID == "bpestininkas6" || figurosID == "bpestininkas7" || figurosID == "bpestininkas8";
+            var Jbokstai = figurosID == "jkbokstas" || figurosID == "jdbokstas";
+            var Bbokstai = figurosID == "bkbokstas" || figurosID == "bdbokstas";
+            var Jarkliai = figurosID == "jkarklys" || figurosID == "jdarklys";
+            var Barkliai = figurosID == "bkarklys" || figurosID == "bdarklys";
+            var Jrikiai = figurosID == "jkrikis" || figurosID == "jdrikis";
+            var Brikiai = figurosID == "bkrikis" || figurosID == "bdrikis";
+            var Jkaraliene = figurosID == "jkaraliene";
+            var Bkaraliene = figurosID == "bkaraliene";
+            var bokstaiKoordinates = naujosKoordinates(10) || naujosKoordinates(20) || naujosKoordinates(30) || naujosKoordinates(40) || naujosKoordinates(50) ||
+                naujosKoordinates(60) || naujosKoordinates(70) || naujosKoordinates(-10) || naujosKoordinates(-20) || naujosKoordinates(-30) ||
+                naujosKoordinates(-40) || naujosKoordinates(-50) || naujosKoordinates(-60) || naujosKoordinates(-70) || naujosKoordinates(1) ||
+                naujosKoordinates(2) || naujosKoordinates(3) || naujosKoordinates(4) || naujosKoordinates(5) || naujosKoordinates(6) ||
+                naujosKoordinates(7) || naujosKoordinates(-1) || naujosKoordinates(-2) || naujosKoordinates(-3) || naujosKoordinates(-4) ||
+                naujosKoordinates(-5) || naujosKoordinates(-6) || naujosKoordinates(-7);
+
+            var arkliaiKoordinates = naujosKoordinates(-19) || naujosKoordinates(-8) || naujosKoordinates(12) || naujosKoordinates(21) || naujosKoordinates(19) ||
+                naujosKoordinates(8) || naujosKoordinates(-12) || naujosKoordinates(-21);
+
+            var rikiaiKoordinates = naujosKoordinates(11) || naujosKoordinates(22) || naujosKoordinates(33) || naujosKoordinates(44) || naujosKoordinates(55) ||
+                naujosKoordinates(66) || naujosKoordinates(77) || naujosKoordinates(-11) || naujosKoordinates(-22) || naujosKoordinates(-33) ||
+                naujosKoordinates(-44) || naujosKoordinates(-55) || naujosKoordinates(-66) || naujosKoordinates(-77) || naujosKoordinates(9) ||
+                naujosKoordinates(18) || naujosKoordinates(27) || naujosKoordinates(36) || naujosKoordinates(45) || naujosKoordinates(54) ||
+                naujosKoordinates(63) || naujosKoordinates(-9) || naujosKoordinates(-18) || naujosKoordinates(-27) || naujosKoordinates(-36) ||
+                naujosKoordinates(-45) || naujosKoordinates(-54) || naujosKoordinates(-63);
+
+            var karalieneKoordinates = naujosKoordinates(10) || naujosKoordinates(20) || naujosKoordinates(30) || naujosKoordinates(40) || naujosKoordinates(50) ||
+                naujosKoordinates(60) || naujosKoordinates(70) || naujosKoordinates(-10) || naujosKoordinates(-20) || naujosKoordinates(-30) ||
+                naujosKoordinates(-40) || naujosKoordinates(-50) || naujosKoordinates(-60) || naujosKoordinates(-70) || naujosKoordinates(1) ||
+                naujosKoordinates(2) || naujosKoordinates(3) || naujosKoordinates(4) || naujosKoordinates(5) || naujosKoordinates(6) ||
+                naujosKoordinates(7) || naujosKoordinates(-1) || naujosKoordinates(-2) || naujosKoordinates(-3) || naujosKoordinates(-4) ||
+                naujosKoordinates(-5) || naujosKoordinates(-6) || naujosKoordinates(-7) || naujosKoordinates(11) || naujosKoordinates(22) ||
+                naujosKoordinates(33) || naujosKoordinates(44) || naujosKoordinates(55) || naujosKoordinates(66) || naujosKoordinates(77) ||
+                naujosKoordinates(-11) || naujosKoordinates(-22) || naujosKoordinates(-33) || naujosKoordinates(-44) || naujosKoordinates(-55) ||
+                naujosKoordinates(-66) || naujosKoordinates(-77) || naujosKoordinates(9) || naujosKoordinates(18) || naujosKoordinates(27) ||
+                naujosKoordinates(36) || naujosKoordinates(45) || naujosKoordinates(54) || naujosKoordinates(63) || naujosKoordinates(-9) ||
+                naujosKoordinates(-18) || naujosKoordinates(-27) || naujosKoordinates(-36) || naujosKoordinates(-45) || naujosKoordinates(-54) ||
+                naujosKoordinates(-63);
+
+
+            if (ev.target.hasChildNodes()) {
+
+                parent = document.getElementById(pabaigosKoordinates);
+                naujas = document.getElementById(figurosID);
+                try {
+                    senas = document.getElementById(pabaigosKoordinates).firstElementChild;
+                } catch (err) {}
+                try {
+                    senasClass = document.getElementById(pabaigosKoordinates).firstElementChild.className;
+                } catch (err) {};
+                try {
+                    document.getElementById("tekstas4").innerHTML = senasClass;
+                } catch (err) {};
+
+
+
+
+
+                if (Jpestininkai && (naujosKoordinates(11) || naujosKoordinates(9)) && pabaigosKoordinates != pradziosKoordinates + 10) {
+                    if (senasClass != "Jfigura") {
+                        return;
+                    } else {
+                        ev.preventDefault();
+                        if (senasClass == "Bfigura") {
+                            parent.replaceChild(naujas, senas);
+                        }
+                    }
+
+                } else if (Bpestininkai && (naujosKoordinates(-11) || naujosKoordinates(-9)) && pabaigosKoordinates != pradziosKoordinates - 10) {
+                    if (Bpestininkai && senasClass == "Bfigura") {
+                        return;
+                    } else {
+                        ev.preventDefault();
+                        if (Bpestininkai && senasClass == "Jfigura") {
+                            parent.replaceChild(naujas, senas);
+                        }
+                    }
+                } else if (Jbokstai && bokstaiKoordinates) {
+                    if (senasClass == "Jfigura") {
+                        return;
+                    } else {
+                        ev.preventDefault();
+                        if (senasClass == "Bfigura") {
+                            parent.replaceChild(naujas, senas);
+
+                        }
+                    }
+                } else if (Bbokstai && bokstaiKoordinates) {
+                    if (senasClass == "Bfigura") {
+                        return;
+                    } else {
+                        ev.preventDefault();
+                        if (senasClass == "Jfigura") {
+                            parent.replaceChild(naujas, senas);
+                        }
+                    }
+                } else if (Jarkliai && arkliaiKoordinates) {
+                    if (senasClass == "Jfigura") {
+                        return;
+                    } else {
+                        ev.preventDefault();
+                        if (senasClass == "Bfigura") {
+                            parent.replaceChild(naujas, senas);
+                        }
+                    }
+                } else if (Barkliai && arkliaiKoordinates) {
+                    if (senasClass == "Bfigura") {
+                        return;
+                    } else {
+                        ev.preventDefault();
+                        if (senasClass == "Jfigura") {
+                            parent.replaceChild(naujas, senas);
+                        }
+                    }
+                } else if (Jrikiai && rikiaiKoordinates) {
+                    if (senasClass == "Jfigura") {
+                        return;
+                    } else {
+                        ev.preventDefault();
+                        if (senasClass == "Bfigura") {
+                            parent.replaceChild(naujas, senas);
+                        }
+                    }
+                } else if (Brikiai && rikiaiKoordinates) {
+                    if (senasClass == "Bfigura") {
+                        return;
+                    } else {
+                        ev.preventDefault();
+                        if (senasClass == "Jfigura") {
+                            parent.replaceChild(naujas, senas);
+                        }
+                    }
+                } else if (Jkaraliene && karalieneKoordinates) {
+                    if (senasClass == "Jfigura") {
+                        return;
+                    } else {
+                        ev.preventDefault();
+                        if (senasClass == "Bfigura") {
+                            parent.replaceChild(naujas, senas);
+                        }
+                    }
+                } else if (Bkaraliene && karalieneKoordinates) {
+                    if (senasClass == "Bfigura") {
+                        return;
+                    } else {
+                        ev.preventDefault();
+                        if (senasClass == "Jfigura") {
+                            parent.replaceChild(naujas, senas);
+                        }
+                    }
+                } else {
+                    return;
+                }
+            }
+
+
+            if (Jpestininkai) {
+                if (pradziosKoordinates == 21 || pradziosKoordinates == 22 || pradziosKoordinates == 23 || pradziosKoordinates == 24 || pradziosKoordinates == 25 || pradziosKoordinates == 26 || pradziosKoordinates == 27 || pradziosKoordinates == 28) {
+                    if (naujosKoordinates(10) || naujosKoordinates(20)) {
+                        ev.preventDefault();
+                    }
+                }
+                if (naujosKoordinates(10)) {
+                    ev.preventDefault();
+                }
+            }
+
+            if (Bpestininkai) {
+                if (pradziosKoordinates == 71 || pradziosKoordinates == 72 || pradziosKoordinates == 73 || pradziosKoordinates == 74 || pradziosKoordinates == 75 || pradziosKoordinates == 76 || pradziosKoordinates == 77 || pradziosKoordinates == 78) {
+                    if (naujosKoordinates(-10) || naujosKoordinates(-20)) {
+                        ev.preventDefault();
+                    }
+                }
+                if (naujosKoordinates(-10)) {
+                    ev.preventDefault();
+                }
+            }
+
+            if (Jbokstai || Bbokstai) {
+
+                // if (pabaigosKoordinates <= bpestininkas1Loc){
+                //     alert("veikia");
+                // }
+
+
+                if (bokstaiKoordinates) {
+                    ev.preventDefault();
+                }
+            }
+
+            if (Jarkliai || Barkliai) {
+                if (arkliaiKoordinates) {
+                    ev.preventDefault();
+                }
+            }
+
+            if (Jrikiai || Brikiai) {
+                if (rikiaiKoordinates) {
+                    ev.preventDefault();
+                }
+            }
+
+            if (Jkaraliene || Bkaraliene) {
+                if (karalieneKoordinates) {
+                    ev.preventDefault();
+                }
+            }
+
+            function naujosKoordinates(x) {
+                return pabaigosKoordinates == pradziosKoordinates + x;
+            }
+
+
+
+            document.getElementById("tekstas2").innerHTML = ev.target.id;
+
+
+
+        }
+        // -----------------------------------------------------------------Drag-----------------------------------------------------------------
+
+        function drag(ev) {
+            pradziosKoordinates = parseInt(ev.target.parentNode.id);
+            figurosID = ev.target.id;
+            ev.dataTransfer.setData("text", ev.target.id);
+
+            document.getElementById("tekstas").innerHTML = ev.target.parentNode.id;
+            document.getElementById("tekstas3").innerHTML = ev.target.id;
+
+        }
+        // -----------------------------------------------------------------Drop-----------------------------------------------------------------
+
+        function drop(ev) {
+            ev.preventDefault();
+
+            var data = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(data));
+
+
+            jpestininkas1Loc = document.getElementById("jpestininkas1").parentNode.id;
+            jpestininkas2Loc = document.getElementById("jpestininkas2").parentNode.id;
+            jpestininkas3Loc = document.getElementById("jpestininkas3").parentNode.id;
+            jpestininkas4Loc = document.getElementById("jpestininkas4").parentNode.id;
+            jpestininkas5Loc = document.getElementById("jpestininkas5").parentNode.id;
+            jpestininkas6Loc = document.getElementById("jpestininkas6").parentNode.id;
+            jpestininkas7Loc = document.getElementById("jpestininkas7").parentNode.id;
+            jpestininkas8Loc = document.getElementById("jpestininkas8").parentNode.id;
+            jkBokstasLoc = document.getElementById("jkbokstas").parentNode.id;
+            jdBokstasLoc = document.getElementById("jdbokstas").parentNode.id;
+            jkArklysLoc = document.getElementById("jkarklys").parentNode.id;
+            jdArklysLoc = document.getElementById("jdarklys").parentNode.id;
+            jkRikisLoc = document.getElementById("jkrikis").parentNode.id;
+            jdRikisLoc = document.getElementById("jdrikis").parentNode.id;
+            jKaralieneLoc = document.getElementById("jkaraliene").parentNode.id;
+
+            bpestininkas1Loc = document.getElementById("bpestininkas1").parentNode.id;
+            bpestininkas2Loc = document.getElementById("bpestininkas2").parentNode.id;
+            bpestininkas3Loc = document.getElementById("bpestininkas3").parentNode.id;
+            bpestininkas4Loc = document.getElementById("bpestininkas4").parentNode.id;
+            bpestininkas5Loc = document.getElementById("bpestininkas5").parentNode.id;
+            bpestininkas6Loc = document.getElementById("bpestininkas6").parentNode.id;
+            bpestininkas7Loc = document.getElementById("bpestininkas7").parentNode.id;
+            bpestininkas8Loc = document.getElementById("bpestininkas8").parentNode.id;
+            bkBokstasLoc = document.getElementById("bkbokstas").parentNode.id;
+            bdBokstasLoc = document.getElementById("bdbokstas").parentNode.id;
+            bkArklysLoc = document.getElementById("bkarklys").parentNode.id;
+            bdArklysLoc = document.getElementById("bdarklys").parentNode.id;
+            bkRikisLoc = document.getElementById("bkrikis").parentNode.id;
+            bdRikisLoc = document.getElementById("bdrikis").parentNode.id;
+            bKaralieneLoc = document.getElementById("bkaraliene").parentNode.id;
+
+            document.getElementById("jpestininkas1Loc").innerHTML = "Pestininkas1 - " + jpestininkas1Loc;
+            document.getElementById("jpestininkas2Loc").innerHTML = "Pestininkas2 - " + jpestininkas2Loc;
+            document.getElementById("jpestininkas3Loc").innerHTML = "Pestininkas3 - " + jpestininkas3Loc;
+            document.getElementById("jpestininkas4Loc").innerHTML = "Pestininkas4 - " + jpestininkas4Loc;
+            document.getElementById("jpestininkas5Loc").innerHTML = "Pestininkas5 - " + jpestininkas5Loc;
+            document.getElementById("jpestininkas6Loc").innerHTML = "Pestininkas6 - " + jpestininkas6Loc;
+            document.getElementById("jpestininkas7Loc").innerHTML = "Pestininkas7 - " + jpestininkas7Loc;
+            document.getElementById("jpestininkas8Loc").innerHTML = "Pestininkas8 - " + jpestininkas8Loc;
+            document.getElementById("jkBokstasLoc").innerHTML = "kBokstas - " + jkBokstasLoc;
+            document.getElementById("jdBokstasLoc").innerHTML = "dBokstas - " + jdBokstasLoc;
+            document.getElementById("jkArklysLoc").innerHTML = "kArklys - " + jkArklysLoc;
+            document.getElementById("jdArklysLoc").innerHTML = "dArklys - " + jdArklysLoc;
+            document.getElementById("jkRikisLoc").innerHTML = "kRikis - " + jkRikisLoc;
+            document.getElementById("jdRikisLoc").innerHTML = "dRikis - " + jdRikisLoc;
+            document.getElementById("jKaralieneLoc").innerHTML = "Karaliene - " + jKaralieneLoc;
+
+            document.getElementById("bpestininkas1Loc").innerHTML = "Pestininkas1 - " + bpestininkas1Loc;
+            document.getElementById("bpestininkas2Loc").innerHTML = "Pestininkas2 - " + bpestininkas2Loc;
+            document.getElementById("bpestininkas3Loc").innerHTML = "Pestininkas3 - " + bpestininkas3Loc;
+            document.getElementById("bpestininkas4Loc").innerHTML = "Pestininkas4 - " + bpestininkas4Loc;
+            document.getElementById("bpestininkas5Loc").innerHTML = "Pestininkas5 - " + bpestininkas5Loc;
+            document.getElementById("bpestininkas6Loc").innerHTML = "Pestininkas6 - " + bpestininkas6Loc;
+            document.getElementById("bpestininkas7Loc").innerHTML = "Pestininkas7 - " + bpestininkas7Loc;
+            document.getElementById("bpestininkas8Loc").innerHTML = "Pestininkas8 - " + bpestininkas8Loc;
+            document.getElementById("bkBokstasLoc").innerHTML = "kBokstas - " + bkBokstasLoc;
+            document.getElementById("bdBokstasLoc").innerHTML = "dBokstas - " + bdBokstasLoc;
+            document.getElementById("bkArklysLoc").innerHTML = "kArklys - " + bkArklysLoc;
+            document.getElementById("bdArklysLoc").innerHTML = "dArklys - " + bdArklysLoc;
+            document.getElementById("bkRikisLoc").innerHTML = "kRikis - " + bkRikisLoc;
+            document.getElementById("bdRikisLoc").innerHTML = "dRikis - " + bdRikisLoc;
+            document.getElementById("bKaralieneLoc").innerHTML = "Karaliene - " + bKaralieneLoc;
+        }
+    </script>
+</head>
+
+<body>
+    <div style="float: left;">
+        <div id="tekstas">0</div>
+        <div id="tekstas2">0</div>
+        <div id="tekstas3">0</div>
+        <div id="tekstas4">0</div>
+        <div id="tekstas5">0</div>
+        <div id="tekstas6">0</div>
+        <input type="button" value="test" onclick="test123()">
+    </div>
+
+    <div style="float: right;">
+        <div style="font-weight: bold;">Juodi:</div>
+        <div id="jpestininkas1Loc">Pestininkas1 - 00</div>
+        <div id="jpestininkas2Loc">Pestininkas2 - 00</div>
+        <div id="jpestininkas3Loc">Pestininkas3 - 00</div>
+        <div id="jpestininkas4Loc">Pestininkas4 - 00</div>
+        <div id="jpestininkas5Loc">Pestininkas5 - 00</div>
+        <div id="jpestininkas6Loc">Pestininkas6 - 00</div>
+        <div id="jpestininkas7Loc">Pestininkas7 - 00</div>
+        <div id="jpestininkas8Loc">Pestininkas8 - 00</div>
+        <div id="jkBokstasLoc">kBokstas - 00</div>
+        <div id="jdBokstasLoc">dBokstas - 00</div>
+        <div id="jkArklysLoc">kArklys - 00</div>
+        <div id="jdArklysLoc">dArklys - 00</div>
+        <div id="jkRikisLoc">kRikis - 00</div>
+        <div id="jdRikisLoc">dRikis - 00</div>
+        <div id="jKaralieneLoc">Karaliene - 00</div> <br> <br>
+        <div style="font-weight: bold;">Balti:</div>
+        <div id="bpestininkas1Loc">Pestininkas1 - 00</div>
+        <div id="bpestininkas2Loc">Pestininkas2 - 00</div>
+        <div id="bpestininkas3Loc">Pestininkas3 - 00</div>
+        <div id="bpestininkas4Loc">Pestininkas4 - 00</div>
+        <div id="bpestininkas5Loc">Pestininkas5 - 00</div>
+        <div id="bpestininkas6Loc">Pestininkas6 - 00</div>
+        <div id="bpestininkas7Loc">Pestininkas7 - 00</div>
+        <div id="bpestininkas8Loc">Pestininkas8 - 00</div>
+        <div id="bkBokstasLoc">kBokstas - 00</div>
+        <div id="bdBokstasLoc">dBokstas - 00</div>
+        <div id="bkArklysLoc">kArklys - 00</div>
+        <div id="bdArklysLoc">dArklys - 00</div>
+        <div id="bkRikisLoc">kRikis - 00</div>
+        <div id="bdRikisLoc">dRikis - 00</div>
+        <div id="bKaralieneLoc">Karaliene - 00</div>
+
+
+    </div>
+
+    <div class="container">
+        <!-- --------------------------Remelis-------------------------- -->
+        <div class="remelis1"></div>
+        <div class="remelis1"><span>H</span></div>
+        <div class="remelis1"><span>G</span></div>
+        <div class="remelis1"><span>F</span></div>
+        <div class="remelis1"><span>E</span></div>
+        <div class="remelis1"><span>D</span></div>
+        <div class="remelis1"><span>C</span></div>
+        <div class="remelis1"><span>B</span></div>
+        <div class="remelis1"><span>A</span></div>
+        <div class="remelis1"></div>
+        <!-- --------------------------Eilute1-------------------------- -->
+        <div class="remelis"><span>1</span></div>
+        <div class="lenta1" id="11" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="Jfigura" draggable="true" ondragstart="drag(event)" id="jkbokstas">&#9820;</div>
+        </div>
+        <div class="lenta1" id="12" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="Jfigura" draggable="true" ondragstart="drag(event)" id="jkarklys">&#9822;</div>
+        </div>
+        <div class="lenta1" id="13" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="Jfigura" draggable="true" ondragstart="drag(event)" id="jkrikis">&#9821;</div>
+        </div>
+        <div class="lenta1" id="14" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="Jfigura" draggable="true" ondragstart="drag(event)" id="jkaraliene">&#9819;</div>
+        </div>
+        <div class="lenta1" id="15" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="Jfigura" draggable="true" ondragstart="drag(event)" id="jkaralius">&#9818;</div>
+        </div>
+        <div class="lenta1" id="16" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="Jfigura" draggable="true" ondragstart="drag(event)" id="jdrikis">&#9821;</div>
+        </div>
+        <div class="lenta1" id="17" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="Jfigura" draggable="true" ondragstart="drag(event)" id="jdarklys">&#9822;</div>
+        </div>
+        <div class="lenta1" id="18" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="Jfigura" draggable="true" ondragstart="drag(event)" id="jdbokstas">&#9820;</div>
+        </div>
+        <div class="remelis1"><span>1</span></div>
+
+        <!-- --------------------------Eilute2-------------------------- -->
+        <div class="remelis"><span>2</span></div>
+        <div class="lenta" id="21" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="Jfigura" draggable="true" ondragstart="drag(event)" id="jpestininkas1">&#9823;</div>
+        </div>
+        <div class="lenta" id="22" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="Jfigura" draggable="true" ondragstart="drag(event)" id="jpestininkas2">&#9823;</div>
+        </div>
+        <div class="lenta" id="23" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="Jfigura" draggable="true" ondragstart="drag(event)" id="jpestininkas3">&#9823;</div>
+        </div>
+        <div class="lenta" id="24" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="Jfigura" draggable="true" ondragstart="drag(event)" id="jpestininkas4">&#9823;</div>
+        </div>
+        <div class="lenta" id="25" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="Jfigura" draggable="true" ondragstart="drag(event)" id="jpestininkas5">&#9823;</div>
+        </div>
+        <div class="lenta" id="26" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="Jfigura" draggable="true" ondragstart="drag(event)" id="jpestininkas6">&#9823;</div>
+        </div>
+        <div class="lenta" id="27" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="Jfigura" draggable="true" ondragstart="drag(event)" id="jpestininkas7">&#9823;</div>
+        </div>
+        <div class="lenta" id="28" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="Jfigura" draggable="true" ondragstart="drag(event)" id="jpestininkas8">&#9823;</div>
+        </div>
+        <div class="remelis1"><span>2</span></div>
+
+        <!-- --------------------------Eilute3-------------------------- -->
+        <div class="remelis"><span>3</span></div>
+        <div class="lenta1" id="31" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="lenta1" id="32" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="lenta1" id="33" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="lenta1" id="34" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="lenta1" id="35" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="lenta1" id="36" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="lenta1" id="37" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="lenta1" id="38" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="remelis1"><span>3</span></div>
+
+        <!-- --------------------------Eilute4-------------------------- -->
+        <div class="remelis"><span>4</span></div>
+        <div class="lenta" id="41" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="lenta" id="42" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="lenta" id="43" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="lenta" id="44" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="lenta" id="45" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="lenta" id="46" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="lenta" id="47" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="lenta" id="48" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="remelis1"><span>4</span></div>
+
+        <!-- --------------------------Eilute5-------------------------- -->
+        <div class="remelis"><span>5</span></div>
+        <div class="lenta1" id="51" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="lenta1" id="52" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="lenta1" id="53" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="lenta1" id="54" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="lenta1" id="55" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="lenta1" id="56" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="lenta1" id="57" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="lenta1" id="58" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="remelis1"><span>5</span></div>
+
+        <!-- --------------------------Eilute6-------------------------- -->
+        <div class="remelis"><span>6</span></div>
+        <div class="lenta" id="61" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="lenta" id="62" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="lenta" id="63" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="lenta" id="64" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="lenta" id="65" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="lenta" id="66" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="lenta" id="67" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="lenta" id="68" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="remelis1"><span>6</span></div>
+
+        <!-- --------------------------Eilute7-------------------------- -->
+        <div class="remelis"><span>7</span></div>
+        <div class="lenta1" id="71" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="Bfigura" draggable="true" ondragstart="drag(event)" id="bpestininkas1">&#9823;</div>
+        </div>
+        <div class="lenta1" id="72" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="Bfigura" draggable="true" ondragstart="drag(event)" id="bpestininkas2">&#9823;</div>
+        </div>
+        <div class="lenta1" id="73" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="Bfigura" draggable="true" ondragstart="drag(event)" id="bpestininkas3">&#9823;</div>
+        </div>
+        <div class="lenta1" id="74" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="Bfigura" draggable="true" ondragstart="drag(event)" id="bpestininkas4">&#9823;</div>
+        </div>
+        <div class="lenta1" id="75" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="Bfigura" draggable="true" ondragstart="drag(event)" id="bpestininkas5">&#9823;</div>
+        </div>
+        <div class="lenta1" id="76" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="Bfigura" draggable="true" ondragstart="drag(event)" id="bpestininkas6">&#9823;</div>
+        </div>
+        <div class="lenta1" id="77" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="Bfigura" draggable="true" ondragstart="drag(event)" id="bpestininkas7">&#9823;</div>
+        </div>
+        <div class="lenta1" id="78" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="Bfigura" draggable="true" ondragstart="drag(event)" id="bpestininkas8">&#9823;</div>
+        </div>
+        <div class="remelis1"><span>7</span></div>
+
+        <!-- --------------------------Eilute8-------------------------- -->
+        <div class="remelis"><span>8</span></div>
+        <div class="lenta" id="81" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="Bfigura" draggable="true" ondragstart="drag(event)" id="bkbokstas">&#9820;</div>
+        </div>
+        <div class="lenta" id="82" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="Bfigura" draggable="true" ondragstart="drag(event)" id="bkarklys">&#9822;</div>
+        </div>
+        <div class="lenta" id="83" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="Bfigura" draggable="true" ondragstart="drag(event)" id="bkrikis">&#9821;</div>
+        </div>
+        <div class="lenta" id="84" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="Bfigura" draggable="true" ondragstart="drag(event)" id="bkaraliene">&#9819;</div>
+        </div>
+        <div class="lenta" id="85" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="Bfigura" draggable="true" ondragstart="drag(event)" id="Bkaralius">&#9818;</div>
+        </div>
+        <div class="lenta" id="86" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="Bfigura" draggable="true" ondragstart="drag(event)" id="bdrikis">&#9821;</div>
+        </div>
+        <div class="lenta" id="87" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="Bfigura" draggable="true" ondragstart="drag(event)" id="bdarklys">&#9822;</div>
+        </div>
+        <div class="lenta" id="88" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="Bfigura" draggable="true" ondragstart="drag(event)" id="bdbokstas">&#9820;</div>
+        </div>
+        <div class="remelis1"><span>8</span></div>
+
+        <!-- --------------------------Remelis-------------------------- -->
+        <div class="remelis"></div>
+        <div class="remelis"><span>H</span></div>
+        <div class="remelis"><span>G</span></div>
+        <div class="remelis"><span>F</span></div>
+        <div class="remelis"><span>E</span></div>
+        <div class="remelis"><span>D</span></div>
+        <div class="remelis"><span>C</span></div>
+        <div class="remelis"><span>B</span></div>
+        <div class="remelis"><span>A</span></div>
+        <div class="remelis1"></div>
+    </div>
+</body>
+
+</html>
