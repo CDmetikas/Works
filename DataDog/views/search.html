@@ -1,0 +1,10 @@
+<div class="searchDiv">
+  <form name="searchForm">
+    <h4>Total jokes found: {{searchList.total}}</h4>
+    <input type="text" name="searchValue" ng-model="searchValue" ng-keyup="search(searchValue)" placeholder="  Search for jokes" ng-Minlength="3"> <br> <br>
+    <h4 ng-if="!searchForm.searchValue.$valid">The value is too short (min 3 characters)</h4>
+  </form>
+  <ul>
+    <li ng-repeat="searchList in searchList.result">{{searchList.value}}</li>
+  </ul>
+</div>

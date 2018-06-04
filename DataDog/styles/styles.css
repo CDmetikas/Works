@@ -1,0 +1,117 @@
+body {
+  background-color: #D0D3D4;
+  width: 100%;
+}
+
+body .ng-enter {
+  transition: 0.5s linear all;
+  opacity: 0;
+}
+
+body .ng-enter.ng-enter-active {
+  opacity: 1;
+}
+
+body main button {
+  margin: 0px;
+  box-shadow: 0px 0px 10px 3px #888888;
+}
+
+body main .randomDiv {
+  background-color: #82E0AA;
+  margin: 50px auto;
+  width: 70vw;
+  min-height: 50vh;
+  color: white;
+  font-size: 2em;
+  padding: 10px;
+  box-shadow: 0px 0px 20px 10px #888888;
+  border-radius: 10px;
+  text-shadow: 1px 1px 5px #000000;
+}
+
+body main .categoryDiv {
+  background-color: #82E0AA;
+  float: right;
+  width: 50%;
+  min-height: 50vh;
+  color: white;
+  font-size: 1.3em;
+  padding: 20px;
+  margin: 2vw;
+  box-shadow: 0px 0px 20px 10px #888888;
+  border-radius: 10px;
+  text-shadow: 1px 1px 5px #000000;
+}
+
+body main .categoryList {
+  padding: 10px;
+  float: left;
+  margin: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px 10px #888888;
+}
+
+body main .categoryList input {
+  border: none;
+  border-radius: 2px;
+  background-color: white;
+}
+
+body main .categoryList ul {
+  list-style: none;
+  padding: 0;
+}
+
+body main .categoryList ul li {
+  border-bottom: 2px solid rgba(82, 82, 82, 0.384);
+}
+
+body main .categoryList ul li a {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #4e4e4e;
+}
+
+body main .searchDiv {
+  background-color: #82E0AA;
+  margin: 50px auto;
+  width: 70vw;
+  min-height: 50vh;
+  color: white;
+  padding: 10px;
+  box-shadow: 0px 0px 20px 10px #888888;
+  border-radius: 10px;
+  text-shadow: 1px 1px 5px #000000;
+}
+
+body main .searchDiv input {
+  border: none;
+  border-radius: 2px;
+  background-color: white;
+}
+
+body main .searchDiv ul {
+  list-style: none;
+  padding: 0;
+}
+
+body main .searchDiv ul li {
+  border-bottom: 2px solid rgba(82, 82, 82, 0.384);
+}
+
+body main .searchDiv ul li a {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #4e4e4e;
+}
+
+@media only screen and (max-width: 600px) {
+  .categoryList {
+    width: 130px;
+  }
+  .categoryList input {
+    width: 100px;
+  }
+}
+/*# sourceMappingURL=styles.css.map */

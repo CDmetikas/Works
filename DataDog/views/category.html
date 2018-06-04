@@ -1,0 +1,15 @@
+<div class="categoryList">
+  <input type="text" ng-model="search" placeholder="  Search">
+  <ul>
+    <li ng-repeat="list in categoryList | filter: search">
+      <a href="" ng-click="categoryClickForm(list)">{{list}}</a>
+    </li>
+  </ul>
+</div>
+
+<div class="categoryDiv">
+  <div style="border-bottom: 2px solid rgba(73, 73, 73, 0.404); padding-bottom: 5px;">
+    {{"Category - " + categoryClick.category[0]}} 
+  </div><br>
+  {{categoryClick.value}}
+</div>
