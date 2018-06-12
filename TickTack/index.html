@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="styles.css">
+  <title>Document</title>
+  <script>
+    var count = 0;
+
+    function tag(x){
+
+      if(!document.getElementById(x).hasChildNodes()){
+        if (count%2 == 0){
+          document.getElementById(x).innerHTML = "X";
+          document.getElementById("text").innerHTML = "0 Eilė";
+        }
+        else {
+          document.getElementById(x).innerHTML = "O";
+          document.getElementById("text").innerHTML = "X Eilė";
+        }
+        count = count + 1;
+      } 
+      try{var k11 = document.getElementById("k11").innerHTML;}catch (err) {}
+      try{var k12 = document.getElementById("k12").innerHTML;}catch (err) {}
+      try{var k13 = document.getElementById("k13").innerHTML;}catch (err) {}
+      try{var k21 = document.getElementById("k21").innerHTML;}catch (err) {}
+      try{var k22 = document.getElementById("k22").innerHTML;}catch (err) {}
+      try{var k23 = document.getElementById("k23").innerHTML;}catch (err) {}
+      try{var k31 = document.getElementById("k31").innerHTML;}catch (err) {}
+      try{var k32 = document.getElementById("k32").innerHTML;}catch (err) {}
+      try{var k33 = document.getElementById("k33").innerHTML;}catch (err) {}
+
+      if (k11 == "X" && k12 == "X" && k13 == "X"){
+        document.getElementById("text").innerHTML = "Laimėjo X!";
+        document.getElementById("text").style.color = "#8BC34A";
+        document.getElementById("k11").style.color = "#8BC34A";
+        document.getElementById("k12").style.color = "#8BC34A";
+        document.getElementById("k13").style.color = "#8BC34A";
+      }
+      if (k21 == "X" && k22 == "X" && k23 == "X"){
+        document.getElementById("text").innerHTML = "Laimėjo X!";
+        document.getElementById("text").style.color = "#8BC34A";
+        document.getElementById("k21").style.color = "#8BC34A";
+        document.getElementById("k22").style.color = "#8BC34A";
+        document.getElementById("k23").style.color = "#8BC34A";
+      }
+      if (k31 == "X" && k32 == "X" && k33 == "X"){
+        document.getElementById("text").innerHTML = "Laimėjo X!";
+        document.getElementById("text").style.color = "#8BC34A";
+        document.getElementById("k31").style.color = "#8BC34A";
+        document.getElementById("k32").style.color = "#8BC34A";
+        document.getElementById("k33").style.color = "#8BC34A";
+      }
+      if (k11 == "X" && k21 == "X" && k31 == "X"){
+        document.getElementById("text").innerHTML = "Laimėjo X!";
+        document.getElementById("text").style.color = "#8BC34A";
+        document.getElementById("k11").style.color = "#8BC34A";
+        document.getElementById("k21").style.color = "#8BC34A";
+        document.getElementById("k31").style.color = "#8BC34A";
+      }
+      if (k12 == "X" && k22 == "X" && k32 == "X"){
+        document.getElementById("text").innerHTML = "Laimėjo X!";
+        document.getElementById("text").style.color = "#8BC34A";
+        document.getElementById("k12").style.color = "#8BC34A";
+        document.getElementById("k22").style.color = "#8BC34A";
+        document.getElementById("k32").style.color = "#8BC34A";
+      }
+      if (k13 == "X" && k23 == "X" && k33 == "X"){
+        document.getElementById("text").innerHTML = "Laimėjo X!";
+        document.getElementById("text").style.color = "#8BC34A";
+        document.getElementById("k13").style.color = "#8BC34A";
+        document.getElementById("k23").style.color = "#8BC34A";
+        document.getElementById("k33").style.color = "#8BC34A";
+      }
+      if (k11 == "X" && k22 == "X" && k33 == "X"){
+        document.getElementById("text").innerHTML = "Laimėjo X!";
+        document.getElementById("text").style.color = "#8BC34A";
+        document.getElementById("k11").style.color = "#8BC34A";
+        document.getElementById("k22").style.color = "#8BC34A";
+        document.getElementById("k33").style.color = "#8BC34A";
+      }
+      if (k13 == "X" && k22 == "X" && k31 == "X"){
+        document.getElementById("text").innerHTML = "Laimėjo X!";
+        document.getElementById("text").style.color = "#8BC34A";
+        document.getElementById("k13").style.color = "#8BC34A";
+        document.getElementById("k22").style.color = "#8BC34A";
+        document.getElementById("k31").style.color = "#8BC34A";
+      }
+
+
+
+      if (k11 == "O" && k12 == "O" && k13 == "O"){
+        document.getElementById("text").innerHTML = "Laimėjo O!";
+        document.getElementById("text").style.color = "#8BC34A";
+        document.getElementById("k11").style.color = "#8BC34A";
+        document.getElementById("k12").style.color = "#8BC34A";
+        document.getElementById("k13").style.color = "#8BC34A";
+      }
+      if (k21 == "O" && k22 == "O" && k23 == "O"){
+        document.getElementById("text").innerHTML = "Laimėjo O!";
+        document.getElementById("text").style.color = "#8BC34A";
+        document.getElementById("k21").style.color = "#8BC34A";
+        document.getElementById("k22").style.color = "#8BC34A";
+        document.getElementById("k23").style.color = "#8BC34A";
+      }
+      if (k31 == "O" && k32 == "O" && k33 == "O"){
+        document.getElementById("text").innerHTML = "Laimėjo O!";
+        document.getElementById("text").style.color = "#8BC34A";
+        document.getElementById("k31").style.color = "#8BC34A";
+        document.getElementById("k32").style.color = "#8BC34A";
+        document.getElementById("k33").style.color = "#8BC34A";
+      }
+      if (k11 == "O" && k21 == "O" && k31 == "O"){
+        document.getElementById("text").innerHTML = "Laimėjo O!";
+        document.getElementById("text").style.color = "#8BC34A";
+        document.getElementById("k11").style.color = "#8BC34A";
+        document.getElementById("k21").style.color = "#8BC34A";
+        document.getElementById("k31").style.color = "#8BC34A";
+      }
+      if (k12 == "O" && k22 == "O" && k32 == "O"){
+        document.getElementById("text").innerHTML = "Laimėjo O!";
+        document.getElementById("text").style.color = "#8BC34A";
+        document.getElementById("k12").style.color = "#8BC34A";
+        document.getElementById("k22").style.color = "#8BC34A";
+        document.getElementById("k32").style.color = "#8BC34A";
+      }
+      if (k13 == "O" && k23 == "O" && k33 == "O"){
+        document.getElementById("text").innerHTML = "Laimėjo O!";
+        document.getElementById("text").style.color = "#8BC34A";
+        document.getElementById("k13").style.color = "#8BC34A";
+        document.getElementById("k23").style.color = "#8BC34A";
+        document.getElementById("k33").style.color = "#8BC34A";
+      }
+      if (k11 == "O" && k22 == "O" && k33 == "O"){
+        document.getElementById("text").innerHTML = "Laimėjo O!";
+        document.getElementById("text").style.color = "#8BC34A";
+        document.getElementById("k11").style.color = "#8BC34A";
+        document.getElementById("k22").style.color = "#8BC34A";
+        document.getElementById("k33").style.color = "#8BC34A";
+      }
+      if (k13 == "O" && k22 == "O" && k31 == "O"){
+        document.getElementById("text").innerHTML = "Laimėjo O!";
+        document.getElementById("text").style.color = "#8BC34A";
+        document.getElementById("k13").style.color = "#8BC34A";
+        document.getElementById("k22").style.color = "#8BC34A";
+        document.getElementById("k31").style.color = "#8BC34A";
+      }
+    }
+
+
+  </script>
+</head>
+<body>
+  <div id="main">
+    <div id="k11" class="box" onclick="tag('k11')"></div>
+    <div id="k12" class="box" onclick="tag('k12')"></div>
+    <div id="k13" class="box" onclick="tag('k13')"></div>
+    <div id="k21" class="box" onclick="tag('k21')"></div>
+    <div id="k22" class="box" onclick="tag('k22')"></div>
+    <div id="k23" class="box" onclick="tag('k23')"></div>
+    <div id="k31" class="box" onclick="tag('k31')"></div>
+    <div id="k32" class="box" onclick="tag('k32')"></div>
+    <div id="k33" class="box" onclick="tag('k33')"></div>
+  </div>
+
+  <p id="text">X Eilė</p>
+</body>
+
+</html>
